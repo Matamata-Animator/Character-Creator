@@ -1,4 +1,8 @@
 "use strict";
+if (window.confirm('This tool is now deprecated. Please use Matamata Desktop instead.  ')) 
+{
+window.location.href='https://github.com/Matamata-Animator/Desktop';
+};
 function addPose() {
     if (!character) {
         alert("Please upload a pose image");
