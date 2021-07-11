@@ -1,2 +1,3 @@
 # Character-Creator
-GUI interface to create your characters json
+## :rotating_light: This version is now deprecated. In order to have the most up-to-date features and stability, please use [Matamata Desktop](https://github.com/Matamata-Animator/Desktop) :rotating_light:
+GUI interface to create your chacracters json
