@@ -1,3 +1,7 @@
+if (window.confirm('This tool is now deprecated. Please use Matamata Desktop instead.  ')) 
+{
+window.location.href='https://github.com/Matamata-Animator/Desktop';
+};
 let dropzone: p5.Element;
 let mdrop: p5.Element;
 
