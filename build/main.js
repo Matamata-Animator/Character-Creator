@@ -1,44 +1,40 @@
 "use strict";
-if (window.confirm('This tool is now deprecated. Please use Matamata Desktop instead.  ')) 
-{
-window.location.href='https://github.com/Matamata-Animator/Desktop';
-};
 function addPose() {
-    if (!character) {
-        alert("Please upload a pose image");
-    }
-    if (!json) {
-        alert("Please upload a characters.json");
-    }
     let gc = new Map();
     var x = document.getElementById("form").elements;
     for (const i of x) {
+        console.log(i.name, i.value);
         gc.set(i.name, i.value);
+    }
+    let pose_name = gc.get("pose_name");
+    if (pose_name in ["defaultMouthScale", "defaultPose"]) {
+        alert("Please select a different pose name");
+    }
+    if (pose_name in json["poses"]) {
+        let c = confirm("Are you sure you want to overwrite existing pose: " + pose_name + "?");
+        if (!c) {
+            return;
+        }
+    }
+    if (!character) {
+        alert("Please upload a pose image");
     }
     let pose = {
         image: img_name,
         x: mouth_pos[0] - border,
         y: mouth_pos[1] - border,
-        scale: int(mScale.value()) / 100,
-        facingRight: !mirror_mouth,
+        mouthScale: int(mScale.value()) / 100,
+        facingLeft: mirror_mouth,
     };
-    if (gc.get("closed_mouth") + "") {
-        pose["closed_mouth"] = gc.get("closed_mouth");
-    }
-    json["facesFolder"] = gc.get("facesFolder");
-    json[gc.get("pose_name")] = pose;
+    json["poses"]["defaultPose"] = gc.get("defaultPose");
+    json["poses"][pose_name] = pose;
+    console.log(json);
 }
 function highlight() {
     dropzone.style("background-color", "#ccc");
 }
 function unhighlight() {
     dropzone.style("background-color", "#fff");
-}
-function mhighlight() {
-    mdrop.style("background-color", "#ccc");
-}
-function munhighlight() {
-    mdrop.style("background-color", "#fff");
 }
 function hovering() {
     return (border < mouseX &&
@@ -82,12 +78,11 @@ function setup() {
     dropzone.dragOver(highlight);
     dropzone.dragLeave(unhighlight);
     dropzone.drop(gotFile, unhighlight);
-    mdrop = select("#mdrop");
-    mdrop.dragOver(mhighlight);
-    mdrop.dragLeave(munhighlight);
-    mdrop.drop(mgotFile, unhighlight);
     rectMode(CENTER);
     mouth_image = loadImage("mouths/Adown.png");
+    json["schema"] = 5;
+    json["poses"] = {};
+    json["poses"]["defaultMouthScale"] = 1;
 }
 function draw() {
     if (character) {
@@ -100,31 +95,22 @@ function draw() {
         mouth_pos = [mouseX, mouseY];
     }
     var x = document.getElementById("form").elements;
-    if (x["facingLeft"].checked != mirror_mouth) {
-        mirror_mouth = !mirror_mouth;
-    }
+    mirror_mouth = x["facingLeft"].checked;
 }
 function gotFile(file) {
     if (file.type === "image") {
         img_name = file.name;
-        character = createImg(file.data);
+        character = createImg(file.data, "");
         character.hide();
         background(0);
         cnv = createCanvas(character.width + 2 * border, character.height + 2 * border);
+        console.log(character.width + 2 * border);
         cnv.parent("canvas");
-    }
-    else if (file.type === "application" && !json_made) {
-        json = file.data;
-        json_name = file.name;
-        json_made = true;
-        let gc = new Map();
-        var x = document.getElementById("form").elements;
-        x["facesFolder"].value = json.facesFolder;
     }
 }
 function mgotFile(file) {
     if (file.type === "image") {
-        mouth_image = createImg(file.data);
+        mouth_image = createImg(file.data, "");
         mouth_image.hide();
     }
 }

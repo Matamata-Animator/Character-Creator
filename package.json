@@ -5,7 +5,7 @@
   "scripts": {},
   "homepage": "https://github.com/AI-Spawn/p5js-typescript-template",
   "devDependencies": {
-    "@types/p5": ">=0.9.0",
+    "@types/p5": "==0.9.0",
     "typescript": ">=4.0.0"
   },
   "main": "index.js",

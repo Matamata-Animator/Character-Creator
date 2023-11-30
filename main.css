@@ -13,17 +13,17 @@ body {
 }
 
 .row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  place-items: center;
-  gap: 1rem;
-  grid-auto-columns: 900px;
+  /* display: grid; */
+  /* grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); */
+  /* place-items: center; */
+  /* gap: 1rem; */
+  /* grid-auto-columns: 900px; */
   /* row-gap: 1rem; */
   /* column-gap: 1rem; */
 }
 
 .drop {
-  padding: 0.7vw;
+  padding: 0.7vh;
   border-style: dashed;
   font-size: 1vw;
   width: 97.5%;

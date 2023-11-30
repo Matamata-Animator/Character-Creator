@@ -9,30 +9,41 @@ interface Pose {
 }
 
 function addPose() {
-  if (!character) {
-    alert("Please upload a pose image");
-  }
-  if (!json) {
-    alert("Please upload a characters.json");
-  }
   let gc: Map<string, number> = new Map();
   var x = document.getElementById("form").elements;
   for (const i of x) {
+    console.log(i.name, i.value);
     gc.set(i.name, i.value);
+  }
+
+  let pose_name = gc.get("pose_name");
+  if (pose_name in ["defaultMouthScale", "defaultPose"]) {
+    alert("Please select a different pose name");
+  }
+  if (pose_name in json["poses"]) {
+    let c = confirm(
+      "Are you sure you want to overwrite existing pose: " + pose_name + "?"
+    );
+    if (!c) {
+      return;
+    }
+  }
+
+  if (!character) {
+    alert("Please upload a pose image");
   }
 
   let pose: Pose = {
     image: img_name,
     x: mouth_pos[0] - border,
     y: mouth_pos[1] - border,
-    scale: int(mScale.value()) / 100,
-    facingRight: !mirror_mouth,
+    mouthScale: int(mScale.value()) / 100,
+    facingLeft: mirror_mouth,
   };
 
-  if (gc.get("closed_mouth")! + "") {
-    pose["closed_mouth"] = gc.get("closed_mouth");
-  }
-  json["facesFolder"] = gc.get("facesFolder");
+  json["poses"]["defaultPose"] = gc.get("defaultPose");
 
-  json[gc.get("pose_name")] = pose;
+  json["poses"][pose_name] = pose;
+
+  console.log(json);
 }

@@ -5,13 +5,6 @@ function highlight() {
 function unhighlight() {
   dropzone.style("background-color", "#fff");
 }
-function mhighlight() {
-  mdrop.style("background-color", "#ccc");
-}
-
-function munhighlight() {
-  mdrop.style("background-color", "#fff");
-}
 
 function hovering() {
   return (
