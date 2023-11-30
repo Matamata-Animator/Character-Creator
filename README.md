@@ -1,3 +1,7 @@
 # Character-Creator
-## :rotating_light: This version is now deprecated. In order to have the most up-to-date features and stability, please use [Matamata Studio](https://github.com/Matamata-Animator/Matamata-Studio) :rotating_light:
-GUI interface to create your chacracters json
+
+Live Site: https://matamata.org/Character-Creator/
+
+This is a very basic program to help create the `character.json` file more efficiently. In it's current implementation, this can only do poses and not placeable parts, those would need to be manually added later.
+
+This is just the previously deprecate version of CharacterCreator updated to the new character.json schema. Ideally, this tool would be completely rebuilt but I do not have the time. 
