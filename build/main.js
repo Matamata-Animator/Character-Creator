@@ -61,7 +61,7 @@ let border = 10;
 let mouse_down = false;
 let character;
 let img_name;
-let json_name = "characters.json";
+let json_name = "character.json";
 let json = {};
 let mouth_pos = [0, 0];
 let mouth_image;
