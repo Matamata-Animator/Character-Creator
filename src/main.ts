@@ -9,7 +9,7 @@ let border = 10;
 let mouse_down = false;
 let character: any;
 let img_name: string;
-let json_name: string = "characters.json";
+let json_name: string = "character.json";
 let json: any = {};
 
 let mouth_pos: [number, number] = [0, 0];
