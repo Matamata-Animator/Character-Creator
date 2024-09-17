@@ -1,6 +1,6 @@
 # Character-Creator
 
-Live Site: https://matamata.org/Character-Creator/
+Live Site: [https://matamata.org/Character-Creator/](https://matamata-animator.github.io/Character-Creator/)
 
 This is a very basic program to help create the `character.json` file more efficiently. In it's current implementation, this can only do poses and not placeable parts, those would need to be manually added later.
 
